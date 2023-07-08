@@ -60,3 +60,30 @@
         - Notes when contract is verbally accepted and finalized.
         - Knows how to generate new contract numbers.
         - As the root, it ensures the aggreggate is in a consistent, valid state.
+        - Contract: Are the specs the ssame? Version: Have we been revised?
+    - Versions: Protected with the defensive copy.
+    - The contract aggreggate, by definition, always includes its versions.
+    - NOTE: The persistenmnce logic will need to honor the aggreggate when it retrieves any contract.
+    - DDD: Encapsulation. Protecting domain model(s) from side effects. Simplifying the interface.
+        - Reduced complexity. Adhering to aggreggate rules and behaviors. Critical unit tests.
+
+- ADDING EF CORE DBCONTEXT:
+    - Even though ContractContext has only one DbSet:
+        - You can still technically query and add, update, or delete non-root entities:
+        ```csharp
+            var versions = context.Set<ContractVersion>().ToList();
+            context.Add(Entity); // EF Core will detect the entity type.
+            context.SaveChanges();
+        ```
+    - Infrastructure.Data (Set as startup.) And as the default within Package Manager Console.
+    ```javascript
+        get-dbcontext
+    ```
+    - EF Core looks for a parameterless constructor or one that matches the scalar properties.
+        - e.g.: Cannot bind 'initDate', 'authors', 'workingTitle'
+        - SOLUTION: Add a private parameterless constructor without impacting the aggreggate/contract.
+        - Various tools rely on parameterless constructors, not just EF Core. e.g.: JSON serialization.
+    - EF COre can now build data model.
+
+- TUNING DEFAULT MAPPINGS FOR THE DATA MODEL:
+    - TODO:

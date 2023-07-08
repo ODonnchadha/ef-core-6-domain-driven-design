@@ -12,7 +12,7 @@ public class Author : BaseEntity<int>
     public string EmailAddress { get; set; }
     public string? Bio { get; set; }
     public IList<Book> Books { get; private set; } = new List<Book>();
-
+   
     public Author(string fullName,
       string preferredName,
       string salutation,

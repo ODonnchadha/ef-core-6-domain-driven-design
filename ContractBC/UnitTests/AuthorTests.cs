@@ -5,7 +5,7 @@ namespace ContractBC.UnitTests;
 [TestClass]
 public class AuthorTests
 {
-    [TestMethod]
+    [TestMethod()]
     public void CanCreateSignedAuthor()
     {
         var signedId = Guid.NewGuid();
@@ -13,13 +13,15 @@ public class AuthorTests
         CollectionAssert.AreEqual(new object[] { true, signedId },
                                   new object[] { author.Signed, author.SignedAuthorId });
     }
-    [TestMethod]
+
+    [TestMethod()]
     public void CanCreateUnsignedAuthor()
     {
         var author = Author.UnsignedAuthor("first", "last", "email", "phone");
         Assert.AreEqual(false, author.Signed);
     }
-    [TestMethod]
+
+    [TestMethod()]
     public void CanCreateANewAuthorViaFixAuthorName()
     {
         var author = Author.UnsignedAuthor("first", "last", "email", "phone");
@@ -28,7 +30,8 @@ public class AuthorTests
             new string[] { "newfirst newlast", "email", "phone" },
             new string[] { newauthor.FullName, newauthor.Email, newauthor.Phone });
     }
-    [TestMethod]
+
+    [TestMethod()]
     public void CanCreateANewAuthorViaAddPhone()
     {
         var author = Author.UnsignedAuthor("first", "last", "email", string.Empty);
@@ -37,12 +40,11 @@ public class AuthorTests
             new string[] { "first last", "email", "111111" },
             new string[] { newauthor.FullName, newauthor.Email, newauthor.Phone });
     }
-    [TestMethod]
+
+    [TestMethod()]
     public void UnsignedAuthorHasNoSignedId()
     {
         var author = Author.UnsignedAuthor("first", "last", "email", "phone");
         Assert.AreEqual(Guid.Empty, author.SignedAuthorId);
     }
-
-
 }

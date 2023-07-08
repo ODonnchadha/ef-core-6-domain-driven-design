@@ -3,6 +3,11 @@ public class PersonName
 {
     public string FirstName { get; private set; }
     public string LastName { get; private set; }
+
+    /// <summary>
+    // Private constructor to placate EF Core.
+    /// </summary>
+    private PersonName() { }
     public PersonName(string first, string last)
     {
         FirstName = first;

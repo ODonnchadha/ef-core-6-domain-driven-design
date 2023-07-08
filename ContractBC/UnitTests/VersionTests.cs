@@ -56,7 +56,11 @@ public class VersionTests
         Assert.AreEqual("first last booktitle", $"{namefromContract} booktitle");
     }
 
-    [TestMethod]
+    /// <summary>
+    /// Using reflection to ensure { protected set; } is seen as a family member.
+    /// NOTE: .NET ensures that only derived classes can access setters defined as protected in a base class.
+    /// </summary>
+    [TestMethod()]
     public void DerivedVersionIdIsProtected()
     {
         var prop = typeof(ContractVersion).GetProperty("Id");

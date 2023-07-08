@@ -6,6 +6,10 @@
     using PublisherSystem.SharedKernel;
     public class Contract : BaseEntity<Guid>
     {
+        /// <summary>
+        /// Private constructor to placate EF Core.
+        /// </summary>
+        private Contract() { }
         public Contract(DateTime initDate, List<Author> authors, string workingTitle)
         {
             _initiated = initDate;
@@ -83,6 +87,9 @@
             return Versions.Single(v => v.Id == CurrentVersionId);
         }
 
+        /// <summary>
+        /// This method will eventually raise an event that will alert other bounded contexts.
+        /// </summary>
         public void FinalVersionSignedByAllParties()
         {
             Completed = true;

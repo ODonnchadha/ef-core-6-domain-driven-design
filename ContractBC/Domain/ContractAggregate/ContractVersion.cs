@@ -5,7 +5,12 @@
     using PublisherSystem.SharedKernel;
     using static ContractBC.Services.VersionAttributeFactory;
     public class ContractVersion : BaseEntity<Guid>
-    {
+    {        
+        /// <summary>
+        // Private constructor to placate EF Core.
+        /// </summary>
+        private ContractVersion() { }
+
         /// <summary>
         /// Factory methods due to the private constructor.
         /// </summary>

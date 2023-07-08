@@ -3,6 +3,7 @@
     using PublisherSystem.SharedKernel.ValueObjects;
     public class Author
     {
+        private Author() { }
         public static Author UnsignedAuthor(string firstName, string lastName,
                                             string email, string phone)
         {
