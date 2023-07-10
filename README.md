@@ -86,4 +86,12 @@
     - EF COre can now build data model.
 
 - TUNING DEFAULT MAPPINGS FOR THE DATA MODEL:
-    - TODO:
+    - DbContext: The data model can be built.
+    - "Value objects." EF Core: "Owned Entities."
+        - Owned entities masquerade as entities in a data model. 
+        - Part of EF Core's mechnasim for handling their change tracking and persistence.
+    - Atypical properties recognized by convention:
+        - Getter and setter. At least one is public.
+        - IEnumerable collections. Public.
+        - Enums. With or without value assignments. 
+            - EF Core will use enum position as its stored database value *if* not explicit within code.
